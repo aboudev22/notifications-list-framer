@@ -11,10 +11,10 @@ export default function App() {
     setNotifs((prev) => prev.filter((el) => el.id !== id));
   };
   return (
-    <div className="w-screen h-screen bg-neutral-900 flex justify-center items-end p-5 overflow-hidden">
+    <div className="w-screen h-screen bg-transparent flex justify-center items-end p-5 overflow-hidden">
       <button
         onClick={addNotifs}
-        className="bg-blue-500 rounded-md text-xs p-2 cursor-pointer"
+        className="bg-blue-500 rounded-md text-xs p-2 cursor-pointer active:scale-95"
       >
         Add notifications
       </button>
