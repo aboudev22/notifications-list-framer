@@ -3,7 +3,7 @@ import { X } from "lucide-react";
 import { useState } from "react";
 
 export default function App() {
-  const [notifs, setNotifs] = useState<{ id: number }[]>([]);
+  const [notis, setNotifs] = useState<{ id: number }[]>([]);
   const addNotifs = () => {
     setNotifs((prev) => [...prev, { id: Date.now() }]);
   };
@@ -11,31 +11,31 @@ export default function App() {
     setNotifs((prev) => prev.filter((el) => el.id !== id));
   };
   return (
-    <div className="w-screen h-screen bg-transparent flex justify-center items-end p-5 overflow-hidden">
+    <div className="w-screen h-screen bg-transparent flex justify-center items-end p-5">
       <button
         onClick={addNotifs}
-        className="bg-blue-500 rounded-md text-xs p-2 cursor-pointer active:scale-95"
+        className="p-2 text-white bg-blue-500 rounded-md active:scale-95 transition-all cursor-pointer"
       >
-        Add notifications
+        Add Notifications
       </button>
-      <main className="w-sm flex flex-col gap-2 items-center">
+      <main className="h-full w-sm flex flex-col justify-end items-center gap-2">
         <AnimatePresence mode="popLayout">
-          {notifs.map((item) => (
+          {notis.map((item) => (
             <motion.div
               layout
-              initial={{ opacity: 0, y: 20, scale: 1.2 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0 }}
               key={item.id}
-              className="w-56 p-2 flex justify-between bg-blue-900 rounded-md"
+              initial={{ scale: 1.2, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0, opacity: 0, y: 20 }}
+              className="w-48 p-2 flex justify-between bg-blue-500 rounded-md"
             >
-              <div className="flex flex-col gap-2">
-                <div className="w-32 rounded-md h-6 bg-blue-500" />
-                <div className="w-16 rounded-md h-3 bg-blue-500/40" />
+              <div className="p-2 flex flex-col gap-2">
+                <div className="w-28 h-5 rounded-md bg-blue-300" />
+                <div className="w-20 h-2 rounded-md bg-blue-300/50" />
               </div>
               <X
-                onClick={() => handleDeleted(item.id)}
                 className="text-black w-3 cursor-pointer"
+                onClick={() => handleDeleted(item.id)}
               />
             </motion.div>
           ))}
